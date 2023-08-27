@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, Image, StyleSheet, Dimensions, StatusBar, SafeAreaView, Button, Text, TouchableOpacity, ScrollView } from 'react-native';
-import { FontAwesome } from '@expo/vector-icons';
+import { View, Image, StyleSheet, Dimensions, StatusBar, SafeAreaView, Button, Text, Platform, ScrollView, TouchableOpacity } from 'react-native';
+import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -35,64 +35,105 @@ function HomeScreen({ navigation }) {
       <View style={styles.logoContainer}>
         <Image style={styles.logo} source={logoImage} />
       </View>
-      <ScrollView style={styles.scrollContainer}>
+      <ScrollView style={styles.scrollContainer} showsVerticalScrollIndicator={false}>
         <View style={styles.container}>
           <View style={[styles.card, { marginTop: 30 }]}>
             <Text style={styles.itemText}>Arquimedes</Text>
             <SquareImage placeholderImage={arquimedes} />
-            <Button title="Ir" onPress={() => navigation.navigate('Arquimedes')} />
+            <TouchableOpacity
+              style={styles.customButton}
+              onPress={() => navigation.navigate('Arquimedes')}
+            >
+              <Text style={styles.buttonText}>Saiba mais!</Text>
+            </TouchableOpacity>
           </View>
           <View style={[styles.card, { marginTop: 30 }]}>
             <Text style={styles.itemText}>Floresta</Text>
             <SquareImage placeholderImage={floresta} />
-            <Button title="Ir" onPress={() => navigation.navigate('Arquimedes')} />
+            <TouchableOpacity
+              style={styles.customButton}
+              onPress={() => navigation.navigate('Arquimedes')}
+            >
+              <Text style={styles.buttonText}>Saiba mais!</Text>
+            </TouchableOpacity>
           </View>
         </View>
         <View style={styles.container}>
           <View style={styles.card}>
             <Text style={styles.itemText}>Acho</Text>
             <SquareImage placeholderImage={acho} />
-            <Button title="Ir" onPress={() => navigation.navigate('Arquimedes')} />
+            <TouchableOpacity
+              style={styles.customButton}
+              onPress={() => navigation.navigate('Arquimedes')}
+            >
+              <Text style={styles.buttonText}>Saiba mais!</Text>
+            </TouchableOpacity>
           </View>
           <View style={styles.card}>
             <Text style={styles.itemText}>Astronautas</Text>
             <SquareImage placeholderImage={astronautas} />
-            <Button title="Ir" onPress={() => navigation.navigate('Arquimedes')} />
+            <TouchableOpacity
+              style={styles.customButton}
+              onPress={() => navigation.navigate('Arquimedes')}
+            >
+              <Text style={styles.buttonText}>Saiba mais!</Text>
+            </TouchableOpacity>
           </View>
         </View>
         <View style={styles.container}>
           <View style={styles.card}>
             <Text style={styles.itemText}>Fazendinha</Text>
             <SquareImage placeholderImage={fazendinha} />
-            <Button title="Ir" onPress={() => navigation.navigate('Arquimedes')} />
+            <TouchableOpacity
+              style={styles.customButton}
+              onPress={() => navigation.navigate('Arquimedes')}
+            >
+              <Text style={styles.buttonText}>Saiba mais!</Text>
+            </TouchableOpacity>
           </View>
           <View style={styles.card}>
             <Text style={styles.itemText}>Fuga do Zoo</Text>
             <SquareImage placeholderImage={fuga} />
-            <Button title="Ir" onPress={() => navigation.navigate('Arquimedes')} />
+            <TouchableOpacity
+              style={styles.customButton}
+              onPress={() => navigation.navigate('Arquimedes')}
+            >
+              <Text style={styles.buttonText}>Saiba mais!</Text>
+            </TouchableOpacity>
           </View>
         </View>
         <View style={styles.container}>
           <View style={styles.card}>
             <Text style={styles.itemText}>A.E.R.O.</Text>
             <SquareImage placeholderImage={aero} />
-            <Button title="Ir" onPress={() => navigation.navigate('Arquimedes')} />
+            <TouchableOpacity
+              style={styles.customButton}
+              onPress={() => navigation.navigate('Arquimedes')}
+            >
+              <Text style={styles.buttonText}>Saiba mais!</Text>
+            </TouchableOpacity>
           </View>
           <View style={styles.card}>
             <Text style={styles.itemText}>Fora de Ordem</Text>
             <SquareImage placeholderImage={fora} />
-            <Button title="Ir" onPress={() => navigation.navigate('Arquimedes')} />
+            <TouchableOpacity
+              style={styles.customButton}
+              onPress={() => navigation.navigate('Arquimedes')}
+            >
+              <Text style={styles.buttonText}>Saiba mais!</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </ScrollView>
       <View style={styles.navbar}>
-        <Text style={styles.navText}>Home</Text>
-        <Text style={styles.navText}>About</Text>
-        <Text style={styles.navText}>Contact</Text>
+        <FontAwesome name="home" size={24} color="white" />
+        <FontAwesome name="instagram" size={24} color="white" />
+        <MaterialCommunityIcons name="cart-variant" size={24} color="white" />
       </View>
     </SafeAreaView>
   );
 };
+
 
 function ArquimedesScreen({ navigation }) {
   return (
@@ -152,7 +193,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',  // Fundo branco
     borderTopLeftRadius: 10,  // Arredondar apenas o canto superior esquerdo
     borderTopRightRadius: 10,  // Arredondar apenas o canto superior direito
-
+    borderWidth: 2,  // Espessura da borda
+    borderColor: '#F39200',  // Cor da borda
+    borderRadius: 10,  // Arredondamento da borda
+    marginBottom: Platform.OS === 'ios' ? 35 : 45,
   },
   itemContainer: {
     alignItems: 'center',
@@ -169,7 +213,8 @@ const styles = StyleSheet.create({
     width: imageSize,
     borderWidth: 1,
     borderColor: '#F39200',
-    margin: 5,
+    marginRight: 5,
+    marginLeft: 3,
     alignItems: 'center',
     padding: 10,
   },
@@ -181,12 +226,24 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
     backgroundColor: '#333',
-    height: 50,
+    height: Platform.OS === 'ios' ? 70 : 50,  // Aumenta a altura para 60 no iOS e mantém 50 para Android
     borderTopLeftRadius: 10,  // Arredondar apenas o canto superior esquerdo
     borderTopRightRadius: 10,  // Arredondar apenas o canto superior direito
+    
   },
   navText: {
     color: '#fff',
+  },
+  customButton: {
+    backgroundColor: '#F39200',  // Cor de fundo laranja
+    paddingVertical: 15,  // Espaçamento vertical
+    paddingHorizontal: 20,  // Espaçamento horizontal
+    borderRadius: 5,  // Borda arredondada
+    alignItems: 'center',  // Alinhar texto ao centro
+  },
+  buttonText: {
+    color: 'white',  // Cor do texto
+    fontSize: 16,  // Tamanho da fonte
   },
 });
 
