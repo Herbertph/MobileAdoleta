@@ -1,9 +1,13 @@
 import React from 'react';
-import { View, Image, StyleSheet, Dimensions, StatusBar, SafeAreaView, Button, Text, Platform, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Image, StyleSheet, Dimensions, StatusBar, SafeAreaView, ImageBackground, Text, Platform, ScrollView, TouchableOpacity } from 'react-native';
 import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
+//import screens
+import ArquimedesScreen from './screens/arquimedes';
+
+//import images
 import placeholderImage from './src/images/placeholder.png'; // Importe a imagem
 import logoImage from './src/images/logo.png'; // Importe a imagem
 import arquimedes from './src/images/arquimedes2.png'; // Importe a imagem
@@ -14,6 +18,7 @@ import fazendinha from './src/images/fazendinha.png'; // Importe a imagem
 import fuga from './src/images/fuga.png'; // Importe a imagem
 import aero from './src/images/aero.png'; // Importe a imagem
 import fora from './src/images/fora.png'; // Importe a imagem
+
 
 const screenWidth = Dimensions.get('window').width;
 const imageSize = (screenWidth - 20) / 2;
@@ -135,20 +140,6 @@ function HomeScreen({ navigation }) {
 };
 
 
-function ArquimedesScreen({ navigation }) {
-  return (
-    <SafeAreaView style={styles.mainContainer}>
-      <StatusBar hidden={false} barStyle="light-content" />
-      <View style={styles.logoContainer}>
-        <Image
-          style={styles.logo}
-          source={arquimedes}
-        />
-      </View>
-    </SafeAreaView>
-  );
-}
-
 const Stack = createNativeStackNavigator();
 
 function App() {
@@ -190,11 +181,11 @@ const styles = StyleSheet.create({
     height: imageSize,
   },
   scrollContainer: {
-    backgroundColor: 'white',  // Fundo branco
+    backgroundColor: '#F1F2E7',  // Fundo branco
     borderTopLeftRadius: 10,  // Arredondar apenas o canto superior esquerdo
     borderTopRightRadius: 10,  // Arredondar apenas o canto superior direito
-    borderWidth: 2,  // Espessura da borda
-    borderColor: '#F39200',  // Cor da borda
+    borderWidth: 1,  // Espessura da borda
+    borderColor: '#592F6C',  // Cor da borda
     borderRadius: 10,  // Arredondamento da borda
     marginBottom: Platform.OS === 'ios' ? 35 : 45,
   },
@@ -208,13 +199,17 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: 10,
     fontSize: 25,
+    color: '#F39200',
+    fontWeight: 'bold',
   },
   card: {
     width: imageSize,
     borderWidth: 1,
-    borderColor: '#F39200',
+    borderColor: 'rgba(243, 146, 0, 0.4)',
+    borderRadius: 25,
     marginRight: 5,
     marginLeft: 3,
+    marginBottom: 10,
     alignItems: 'center',
     padding: 10,
   },
@@ -229,17 +224,18 @@ const styles = StyleSheet.create({
     height: Platform.OS === 'ios' ? 70 : 50,  // Aumenta a altura para 60 no iOS e mantém 50 para Android
     borderTopLeftRadius: 10,  // Arredondar apenas o canto superior esquerdo
     borderTopRightRadius: 10,  // Arredondar apenas o canto superior direito
-    
+
   },
   navText: {
     color: '#fff',
   },
   customButton: {
-    backgroundColor: '#F39200',  // Cor de fundo laranja
-    paddingVertical: 15,  // Espaçamento vertical
-    paddingHorizontal: 20,  // Espaçamento horizontal
+    backgroundColor: '#592F6C',  // Cor de fundo laranja
+    paddingVertical: 10,  // Espaçamento vertical
+    paddingHorizontal: 15,  // Espaçamento horizontal
     borderRadius: 5,  // Borda arredondada
     alignItems: 'center',  // Alinhar texto ao centro
+    borderRadius: 60,  // Arredondamento da bordas
   },
   buttonText: {
     color: 'white',  // Cor do texto
