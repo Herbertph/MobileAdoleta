@@ -8,8 +8,8 @@ Game Details: Get detailed information about a game by tapping on its card.
 Interactive UI: Easy navigation with intuitive interfaces.
 
 # Technologies Used
-Javascript / React Native
-
+- Javascript
+-  React Native
 
 # Installation & Setup
 Prerequisites
