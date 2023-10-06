@@ -1,8 +1,9 @@
 import React from 'react';
-import { View, Image, StyleSheet, Dimensions, StatusBar, SafeAreaView, ImageBackground, Text, Platform, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Image, StyleSheet, Dimensions, StatusBar, SafeAreaView, ImageBackground, Text, Platform, ScrollView, TouchableOpacity, Linking } from 'react-native';
 import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
 
 //import screens
 import ArquimedesScreen from './screens/arquimedes';
@@ -18,6 +19,28 @@ import fazendinha from './src/images/fazendinha.png'; // Importe a imagem
 import fuga from './src/images/fuga.png'; // Importe a imagem
 import aero from './src/images/aero.png'; // Importe a imagem
 import fora from './src/images/fora.png'; // Importe a imagem
+
+const openInstagramProfile = () => {
+  const username = 'adoletajogos'; // O nome de usuário do Instagram
+  const appURL = `instagram://user?username=${username}`; // URL para abrir diretamente o app Instagram
+  const webURL = `https://instagram.com/${username}`; // URL para abrir no navegador web
+
+  // Tenta abrir o perfil no app Instagram
+  Linking.canOpenURL(appURL).then((supported) => {
+    if (supported) {
+      return Linking.openURL(appURL);
+    } else {
+      // Se não puder abrir o app Instagram, abre no navegador web
+      return Linking.openURL(webURL);
+    }
+  });
+};
+
+
+const openCartURL = () => {
+  const cartURL = 'https://loja.adoletajogos.com.br/'; // Substitua pelo URL do seu carrinho
+  Linking.openURL(cartURL);
+};
 
 
 const screenWidth = Dimensions.get('window').width;
@@ -131,9 +154,9 @@ function HomeScreen({ navigation }) {
         </View>
       </ScrollView>
       <View style={styles.navbar}>
-        <FontAwesome name="home" size={24} color="white" />
-        <FontAwesome name="instagram" size={24} color="white" />
-        <MaterialCommunityIcons name="cart-variant" size={24} color="white" />
+        <FontAwesome name="home" size={24} color="white" onPress={() => navigation.navigate('Home')} />
+        <FontAwesome name="instagram" size={24} color="white" onPress={openInstagramProfile} />
+        <MaterialCommunityIcons name="cart-variant" size={24} color="white" onPress={openCartURL} />
       </View>
     </SafeAreaView>
   );
@@ -230,7 +253,7 @@ const styles = StyleSheet.create({
     color: '#fff',
   },
   customButton: {
-    backgroundColor: '#592F6C',  // Cor de fundo laranja
+    backgroundColor: '#592F6C',
     paddingVertical: 10,  // Espaçamento vertical
     paddingHorizontal: 15,  // Espaçamento horizontal
     borderRadius: 5,  // Borda arredondada
